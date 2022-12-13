@@ -1,4 +1,4 @@
-package com.octave.pattern.behavioral.observer
+package com.pattern.behavioral.observer
 
 sealed interface Observer {
     fun update(temperature: Double, humidity: Double, pressure: Double)

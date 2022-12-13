@@ -1,4 +1,4 @@
-package com.octave.pattern.behavioral.observer
+package com.pattern.behavioral.observer
 
 class WeatherData: Subject {
     private var temperature: Double = 0.0

@@ -1,10 +1,14 @@
-package com.octave
+package com
 
-import com.octave.pattern.behavioral.decorator.*
-import com.octave.pattern.behavioral.observer.*
-import com.octave.pattern.behavioral.strategy.*
+import com.pattern.behavioral.decorator.*
+import com.pattern.behavioral.observer.AirportWeatherDisplay
+import com.pattern.behavioral.observer.CityCenterWeatherDisplay
+import com.pattern.behavioral.observer.Subject
+import com.pattern.behavioral.observer.WeatherData
+import com.pattern.behavioral.strategy.Artist
+import com.pattern.behavioral.strategy.Dancer
+import com.pattern.behavioral.strategy.Singer
 import java.lang.Thread.sleep
-import java.util.stream.IntStream.range
 
 object Main {
 

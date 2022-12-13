@@ -1,4 +1,4 @@
-package com.octave.pattern.behavioral.strategy
+package com.pattern.behavioral.strategy
 
 sealed interface Performance  {
     fun perform(artistName: String)

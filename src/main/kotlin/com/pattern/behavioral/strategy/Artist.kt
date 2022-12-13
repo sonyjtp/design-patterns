@@ -1,4 +1,4 @@
-package com.octave.pattern.behavioral.strategy
+package com.pattern.behavioral.strategy
 
 /**
  * Composition: Artist HAS-A Skill
@@ -9,18 +9,14 @@ sealed interface Artist {
 
 class Dancer(private val name: String) : Artist {
 
-    private val performance = Dancing
-
     override fun perform() {
-        performance.perform(name)
+        Dancing.perform(name)
     }
 }
 
 class Singer(private val name: String) : Artist {
 
-    private val performance = Singing
-
     override fun perform() {
-        performance.perform(name)
+        Singing.perform(name)
     }
 }

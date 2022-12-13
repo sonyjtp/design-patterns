@@ -1,4 +1,4 @@
-package com.octave.pattern.behavioral.observer
+package com.pattern.behavioral.observer
 
 interface Subject {
     fun registerObserver(observer: Observer): Boolean
