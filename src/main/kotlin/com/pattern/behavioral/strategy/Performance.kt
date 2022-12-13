@@ -6,12 +6,12 @@ sealed interface Performance  {
 
 object Dancing : Performance {
     override fun perform(artistName: String) {
-        println("I am $artistName. I am dancing")
+        println("$artistName is dancing")
     }
 }
 
 object Singing : Performance {
     override fun perform(artistName: String) {
-        println("I am $artistName. I am singing")
+        println("$artistName is singing")
     }
 }

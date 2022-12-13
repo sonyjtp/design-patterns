@@ -4,6 +4,7 @@ package com.pattern.behavioral.strategy
  * Composition: Artist HAS-A Skill
  * */
 sealed interface Artist {
+
     fun perform()
 }
 

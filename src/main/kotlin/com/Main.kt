@@ -67,13 +67,13 @@ object Main {
      */
     private fun callDecorator() {
         val beverage1: Beverage = Espresso
-        println("Beverage 1: ${beverage1.getDescription()}\tCost: ${beverage1.cost()}")
+        println("Beverage 1: ${beverage1.getDescription()}\t\t\t\t\t\t\t\t: $${beverage1.cost()}")
         var beverage2: Beverage = HouseBlend
         beverage2 = Mocha(beverage2)
-        println("Beverage 2: ${beverage2.getDescription()}\tCost: ${beverage2.cost()}")
+        println("Beverage 2: ${beverage2.getDescription()}\t\t\t\t\t\t: $${beverage2.cost()}")
         println("I need more decorations...")
         beverage2 = Milk(Soy(Whip(beverage2)))
-        println("Beverage 2: ${beverage2.getDescription()}\tCost: ${beverage2.cost()}")
+        println("Beverage 2: ${beverage2.getDescription()}\t\t: $${beverage2.cost()}")
 
 
 
