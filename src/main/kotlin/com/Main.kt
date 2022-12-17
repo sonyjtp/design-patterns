@@ -8,6 +8,7 @@ import com.pattern.behavioral.observer.WeatherData
 import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
 import com.pattern.behavioral.strategy.Singer
+import com.pattern.creational.factory.FurnitureFactory
 import java.lang.Thread.sleep
 
 object Main {
@@ -17,6 +18,7 @@ object Main {
         callStrategy()
         callObserver()
         callDecorator()
+        callAbstractFactory()
     }
 
     /**
@@ -74,8 +76,23 @@ object Main {
         println("I need more decorations...")
         beverage2 = Milk(Soy(Whip(beverage2)))
         println("Beverage 2: ${beverage2.getDescription()}\t\t: $${beverage2.cost()}")
+    }
 
-
-
+    /**
+     * Abstract factory pattern has a superfactory that creates other factories.
+     */
+    private fun callAbstractFactory() {
+        var chair = FurnitureFactory.createChair("victorian")
+        chair.roll()
+        chair.pushback()
+        chair = FurnitureFactory.createChair("modern")
+        chair.roll()
+        chair.pushback()
+        var sofa = FurnitureFactory.createSofa("victorian")
+        sofa.roll()
+        sofa.pushback()
+        sofa = FurnitureFactory.createSofa("minimalist")
+        sofa.roll()
+        sofa.pushback()
     }
 }
