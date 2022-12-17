@@ -9,16 +9,24 @@ import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
 import com.pattern.behavioral.strategy.Singer
 import com.pattern.creational.factory.FurnitureFactory
+import com.pattern.creational.factory.simple.ChicagoPizzaStore
+import com.pattern.creational.factory.simple.NyPizzaStore
+import com.pattern.creational.factory.simple.PizzaStore
 import java.lang.Thread.sleep
 
 object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        callStrategy()
-        callObserver()
-        callDecorator()
-        callAbstractFactory()
+        when(readlnOrNull()) {
+            "strategy" -> callStrategy()
+            "observer" -> callObserver()
+            "decorator" -> callDecorator()
+            "simplefactory" -> callSimpleFactory()
+            "abstractfactory" -> callAbstractFactory()
+            else -> throw IllegalArgumentException("invalid!")
+        }
+
     }
 
     /**
@@ -29,7 +37,7 @@ object Main {
      *  2 - Performance isn't tied to the Artist and performance behaviour is encapsulated
      *      Singer is-a Artist
      *      Dancer is-a Artist
-     *      3 - Make them interchangeable - Make Yesudas dance.
+     *  3 - Make them interchangeable - Make Yesudas dance.
      * Artist has a perform() method that is overridden by Singer and Dancer
      * Singing and Dancing have perform() methods
      */
@@ -38,6 +46,8 @@ object Main {
         val artist2: Artist = Dancer("Shobhana")
         artist1.perform()
         artist2.perform()
+
+
         artist1 = Dancer("Yesudas")
         artist1.perform()
     }
@@ -79,7 +89,21 @@ object Main {
     }
 
     /**
-     * Abstract factory pattern has a superfactory that creates other factories.
+     * Simple Factory pattern has an abstract interface for creating one product - pizza in this case. Each subclass
+     * of the interface has its own factory and decides which concrete class (product) to instantiate.
+     */
+    private fun callSimpleFactory() {
+        var pizzaStore: PizzaStore = NyPizzaStore
+        pizzaStore.create("cheese").prepare()
+        pizzaStore.create("pepperoni").prepare()
+        pizzaStore = ChicagoPizzaStore
+        pizzaStore.create("cheese").prepare()
+        pizzaStore.create("pepperoni").prepare()
+    }
+
+    /**
+     * Abstract Factory pattern has an abstract interface for creating a family of products - chairs and sofas.
+     * It has a set of factory methods, one for each product.
      */
     private fun callAbstractFactory() {
         var chair = FurnitureFactory.createChair("victorian")
