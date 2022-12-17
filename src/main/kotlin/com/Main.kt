@@ -8,7 +8,7 @@ import com.pattern.behavioral.observer.WeatherData
 import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
 import com.pattern.behavioral.strategy.Singer
-import com.pattern.creational.factory.FurnitureFactory
+import com.pattern.creational.factory.abstract.FurnitureFactory
 import com.pattern.creational.factory.simple.ChicagoPizzaStore
 import com.pattern.creational.factory.simple.NyPizzaStore
 import com.pattern.creational.factory.simple.PizzaStore

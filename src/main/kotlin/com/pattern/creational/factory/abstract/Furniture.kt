@@ -1,4 +1,4 @@
-package com.pattern.creational.factory
+package com.pattern.creational.factory.abstract
 
 object FurnitureFactory {
     fun createChair(type: String)  = ChairFactory.create(type)
