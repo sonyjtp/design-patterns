@@ -12,6 +12,7 @@ import com.pattern.creational.factory.abstract.FurnitureFactory
 import com.pattern.creational.factory.simple.ChicagoPizzaStore
 import com.pattern.creational.factory.simple.NyPizzaStore
 import com.pattern.creational.factory.simple.PizzaStore
+import com.pattern.creational.singleton.Logger
 import java.lang.Thread.sleep
 
 object Main {
@@ -24,10 +25,13 @@ object Main {
             "decorator" -> callDecorator()
             "simplefactory" -> callSimpleFactory()
             "abstractfactory" -> callAbstractFactory()
+            "singleton" -> callSingleton()
             else -> throw IllegalArgumentException("invalid!")
         }
 
     }
+
+
 
     /**
      * Strategy Pattern - (1) define a family of algorithms, (2) encapsulate each one
@@ -118,5 +122,14 @@ object Main {
         sofa = FurnitureFactory.createSofa("minimalist")
         sofa.roll()
         sofa.pushback()
+    }
+
+    /**
+     * Contrary to how we have it in Java, in Kotlin we do not need a private constructor and a static `getInstance()`
+     * method to create a singleton object. We can just declare an `object` in place of a `class`
+     */
+    private fun callSingleton() {
+        Logger.print("Calling singleton instance $Logger")
+        Logger.print("Calling singleton instance $Logger again")
     }
 }
