@@ -1,6 +1,6 @@
 package com.pattern.behavioral.strategy
 
-sealed interface Performance  {
+sealed interface Performance {
     fun perform(artistName: String)
 }
 

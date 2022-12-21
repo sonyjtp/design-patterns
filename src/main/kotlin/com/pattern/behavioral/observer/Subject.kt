@@ -7,7 +7,7 @@ sealed interface Subject {
     fun updateState(temperature: Double, humidity: Double, pressure: Double)
 }
 
-class WeatherData: Subject {
+class WeatherData : Subject {
     private var temperature: Double = 0.0
     private var humidity: Double = 0.0
     private var pressure: Double = 0.0
@@ -19,7 +19,7 @@ class WeatherData: Subject {
     override fun removeObserver(observer: Observer) = observers.remove(observer)
 
     override fun notifyObservers() {
-        for(observer in observers) {
+        for (observer in observers) {
             observer.update(temperature, humidity, pressure)
         }
     }
