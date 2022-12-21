@@ -1,5 +1,8 @@
 package com
 
+import com.pattern.behavioral.command.Remote
+import com.pattern.behavioral.command.ToggleGarageDoor
+import com.pattern.behavioral.command.ToggleLightButton
 import com.pattern.behavioral.decorator.*
 import com.pattern.behavioral.observer.AirportWeatherDisplay
 import com.pattern.behavioral.observer.CityCenterWeatherDisplay
@@ -19,19 +22,17 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        when(readlnOrNull()) {
+        when (readlnOrNull()) {
             "strategy" -> callStrategy()
             "observer" -> callObserver()
             "decorator" -> callDecorator()
             "simplefactory" -> callSimpleFactory()
             "abstractfactory" -> callAbstractFactory()
             "singleton" -> callSingleton()
+            "command" -> callCommand()
             else -> throw IllegalArgumentException("invalid!")
         }
-
     }
-
-
 
     /**
      * Strategy Pattern - (1) define a family of algorithms, (2) encapsulate each one
@@ -131,5 +132,20 @@ object Main {
     private fun callSingleton() {
         Logger.print("Calling singleton instance $Logger")
         Logger.print("Calling singleton instance $Logger again")
+    }
+
+    /**
+     * Command pattern to encapsulate invocations. It has a caller, a set of commands classes that implement a Command
+     * interface and an invoker that has the command invocation method with a setter method that takes the command.
+     * Command command
+     */
+    private fun callCommand() {
+       val remote = Remote() //invoker
+        remote.command = ToggleLightButton() //first command
+        remote.invoke()
+        remote.invoke()
+        remote.command = ToggleGarageDoor() //second command t
+        remote.invoke()
+        remote.invoke()
     }
 }
