@@ -1,5 +1,21 @@
 package com.pattern.behavioral.decorator
 
+
+/**
+ * Decorators have the same type as the objects they decorate. Decorators add their own behavior to the object
+ * that it decorates. Decorators use inheritance for type-matching and composition to get behaviour.
+ */
+fun main() {
+    val beverage1: Beverage = Espresso
+    println("Beverage 1: ${beverage1.getDescription()}\t\t\t\t\t\t\t\t: $${beverage1.cost()}")
+    var beverage2: Beverage = HouseBlend
+    beverage2 = Mocha(beverage2)
+    println("Beverage 2: ${beverage2.getDescription()}\t\t\t\t\t\t: $${beverage2.cost()}")
+    println("I need more decorations...")
+    beverage2 = Milk(Soy(Whip(beverage2)))
+    println("Beverage 2: ${beverage2.getDescription()}\t\t: $${beverage2.cost()}")
+}
+
 interface Beverage {
     fun getDescription(): String
     fun cost(): Double

@@ -1,35 +1,29 @@
 package com.pattern.behavioral.observer
 
 sealed interface Subject {
-    fun registerObserver(observer: Observer): Boolean
-    fun removeObserver(observer: Observer): Boolean
+    fun register(observer: Observer): Boolean
+    fun remove(observer: Observer): Boolean
     fun notifyObservers()
-    fun updateState(temperature: Double, humidity: Double, pressure: Double)
+    fun updateState(params: Map<String, String>)
 }
 
 class WeatherData : Subject {
-    private var temperature: Double = 0.0
-    private var humidity: Double = 0.0
-    private var pressure: Double = 0.0
-    private val observers = mutableListOf<Observer>()
+    private var weatherParams: Map<String, String> = mapOf()
+    val observers = mutableListOf<Observer>()
 
 
-    override fun registerObserver(observer: Observer) = observers.add(observer)
+    override fun register(observer: Observer) = observers.add(observer)
 
-    override fun removeObserver(observer: Observer) = observers.remove(observer)
+    override fun remove(observer: Observer) = observers.remove(observer)
 
     override fun notifyObservers() {
         for (observer in observers) {
-            observer.update(temperature, humidity, pressure)
+            observer.update(this.weatherParams)
         }
     }
 
-    override fun updateState(temperature: Double, humidity: Double, pressure: Double) {
-        this.temperature = temperature
-        this.humidity = humidity
-        this.pressure = pressure
+    override fun updateState(params: Map<String, String>) {
+        this.weatherParams = params
         notifyObservers()
     }
-
-
 }
