@@ -1,6 +1,19 @@
 package com.pattern.creational.factory.simple
 
 
+/**
+ * Simple Factory pattern has an abstract interface for creating one product - pizza in this case. Each subclass
+ * of the interface has its own factory and decides which concrete class (product) to instantiate.
+ */
+fun main() {
+    var pizzaStore: PizzaStore = NyPizzaStore
+    pizzaStore.create("cheese").prepare()
+    pizzaStore.create("pepperoni").prepare()
+    pizzaStore = ChicagoPizzaStore
+    pizzaStore.create("cheese").prepare()
+    pizzaStore.create("pepperoni").prepare()
+}
+
 sealed interface Pizza {
     fun prepare()
 }

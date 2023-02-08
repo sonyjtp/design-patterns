@@ -1,18 +1,29 @@
 package com.pattern.behavioral.observer
 
 sealed interface Observer {
-    fun update(temperature: Double, humidity: Double, pressure: Double)
+    fun update(params: Map<String, String>)
 
+    fun display(params: Map<String, String>) = params.keys.map { (println("$it: ${params[it]}")) }
 }
 
 object AirportWeatherDisplay : Observer {
-    override fun update(temperature: Double, humidity: Double, pressure: Double) {
-        println("Airport\t\tTemperature: $temperature C\t\tHumidity: $humidity%\tPressure: $pressure in")
+    override fun update(params: Map<String, String>) {
+        println("Airport")
+        display(params)
     }
+
 }
 
 object CityCenterWeatherDisplay : Observer {
-    override fun update(temperature: Double, humidity: Double, pressure: Double) {
-        println("City Center\tTemperature: ${(temperature * 9 / 5 + 32)} F\tHumidity: $humidity%\tPressure: ${1000 + pressure} mb")
+    override fun update(params: Map<String, String>) {
+        println("City Center")
+        display(params)
+    }
+}
+
+object StadiumWeatherDisplay : Observer {
+    override fun update(params: Map<String, String>) {
+        println("Stadium")
+        display(params)
     }
 }
