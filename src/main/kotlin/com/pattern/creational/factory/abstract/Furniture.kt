@@ -1,5 +1,25 @@
 package com.pattern.creational.factory.abstract
 
+
+/**
+ * Abstract Factory pattern has an abstract interface for creating a family of products - chairs and sofas.
+ * It has a set of factory methods, one for each product.
+ */
+fun main() {
+    var chair = FurnitureFactory.createChair("victorian")
+    chair.roll()
+    chair.pushback()
+    chair = FurnitureFactory.createChair("modern")
+    chair.roll()
+    chair.pushback()
+    var sofa = FurnitureFactory.createSofa("victorian")
+    sofa.roll()
+    sofa.pushback()
+    sofa = FurnitureFactory.createSofa("minimalist")
+    sofa.roll()
+    sofa.pushback()
+}
+
 object FurnitureFactory {
     fun createChair(type: String) = ChairFactory.create(type)
     fun createSofa(type: String) = SofaFactory.create(type)
