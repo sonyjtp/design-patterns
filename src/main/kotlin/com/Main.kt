@@ -4,10 +4,6 @@ import com.pattern.behavioral.command.Remote
 import com.pattern.behavioral.command.ToggleGarageDoor
 import com.pattern.behavioral.command.ToggleLightButton
 import com.pattern.behavioral.decorator.*
-import com.pattern.behavioral.observer.AirportWeatherDisplay
-import com.pattern.behavioral.observer.CityCenterWeatherDisplay
-import com.pattern.behavioral.observer.Subject
-import com.pattern.behavioral.observer.WeatherData
 import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
 import com.pattern.behavioral.strategy.Singer
@@ -16,7 +12,6 @@ import com.pattern.creational.factory.simple.ChicagoPizzaStore
 import com.pattern.creational.factory.simple.NyPizzaStore
 import com.pattern.creational.factory.simple.PizzaStore
 import com.pattern.creational.singleton.Logger
-import java.lang.Thread.sleep
 
 object Main {
 
@@ -24,7 +19,6 @@ object Main {
     fun main(args: Array<String>) {
         when (readlnOrNull()) {
             "strategy" -> callStrategy()
-            "observer" -> callObserver()
             "decorator" -> callDecorator()
             "simplefactory" -> callSimpleFactory()
             "abstractfactory" -> callAbstractFactory()
@@ -57,26 +51,6 @@ object Main {
         artist1.perform()
     }
 
-    /**
-     * Observer Pattern - defines a one-to-many dependency between objects so that
-     * when one object's stage changes, all of its dependents are notified and
-     * updated automatically.
-     * -    Subject is only aware of an Observer Interface. Doesn't know about its
-     *      implementation.
-     * -    Add/remove observers any time without modifying subject's code.
-     * -    Reuse/change subjects/observers independently of each other.
-     */
-    private fun callObserver() {
-        val subject: Subject = WeatherData()
-        val observer2 = CityCenterWeatherDisplay
-        subject.registerObserver(AirportWeatherDisplay)
-        subject.registerObserver(observer2)
-        subject.updateState(32.7, 78.5, 30.25)
-        sleep(1000)
-        println()
-        subject.removeObserver(observer2)
-        subject.updateState(33.7, 78.1, 30.18)
-    }
 
     /**
      * Decorators have the same type as the objects they decorate. Decorators add their own behavior to the object
