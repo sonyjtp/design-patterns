@@ -1,4 +1,4 @@
-package com.pattern.behavioral.observer
+package com.pattern.behavioral.observer.weather2
 
 enum class City(private val latitude: Double, private val longitude: Double) {
     NEW_DELHI(latitude = 28.64, longitude = 77.22),

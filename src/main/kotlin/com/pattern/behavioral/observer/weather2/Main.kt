@@ -1,12 +1,17 @@
-package com.pattern.behavioral.observer
+package com.pattern.behavioral.observer.weather2
 
 import com.google.gson.Gson
+import com.pattern.behavioral.observer.Subject
+import com.pattern.behavioral.observer.weather.WeatherData
+import com.pattern.behavioral.observer.weather.WeatherObserver
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
+
+/** INCOMPLETE **/
 
 private const val DISPLAY_DELAY_MILLIS = 5000L
 private const val BASE_URL = "https://api.open-meteo.com/v1/forecast?"
@@ -27,20 +32,20 @@ private val gson = Gson()
  * -    Reuse/change subjects/observers independently of each other.
  */
 fun main() {
-    val subject: Subject = WeatherData()
+    val subject = com.pattern.behavioral.observer.weather.Weather(mutableListOf(), WeatherData())
     registerObservers(subject)
     runBlocking {
         updateWeather(subject)
     }
 }
 
-fun registerObservers(subject: Subject) {
-    subject.register(AirportWeatherDisplay)
-    subject.register(CityCenterWeatherDisplay)
-    subject.register(StadiumWeatherDisplay)
+fun registerObservers(subject: Subject<WeatherObserver, WeatherData>) {
+//    subject.register(AirportWeatherDisplay)
+//    subject.register(CityCenterWeatherDisplay)
+//    subject.register(StadiumWeatherDisplay)
 }
 
-private suspend fun updateWeather(subject: Subject) {
+private suspend fun updateWeather(subject: Subject<WeatherObserver, WeatherData>) {
     var weather: Weather
     val cities = City.values()
     cities.shuffle()
@@ -49,12 +54,12 @@ private suspend fun updateWeather(subject: Subject) {
         val weatherUrl = "$BASE_URL$REQ_LAT=" +
                 "${city.getCoordinates().first}&$REQ_LONG=${city.getCoordinates().second}$REQ_DEF_CONDITIONS"
         weather = gson.fromJson(getWeather(weatherUrl), Weather::class.java)
-        subject.updateState(
-            mapOf(
-                "city" to city.toString(),
-                "weather" to weather.toString()
-            )
-        )
+//        subject.update(
+//            mapOf(
+//                "city" to city.toString(),
+//                "weather" to weather.toString()
+//            )
+//        )
     }
 }
 

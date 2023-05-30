@@ -1,8 +1,5 @@
 package com
 
-import com.pattern.behavioral.command.Remote
-import com.pattern.behavioral.command.ToggleGarageDoor
-import com.pattern.behavioral.command.ToggleLightButton
 import com.pattern.behavioral.decorator.*
 import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
@@ -114,12 +111,12 @@ object Main {
      * Command command
      */
     private fun callCommand() {
-       val remote = Remote() //invoker
-        remote.command = ToggleLightButton() //first command
-        remote.invoke()
-        remote.invoke()
-        remote.command = ToggleGarageDoor() //second command t
-        remote.invoke()
-        remote.invoke()
+//       val remote = Remote() //invoker
+//        remote.command = ToggleLightButton() //first command
+//        remote.invoke()
+//        remote.invoke()
+//        remote.command = ToggleGarageDoor() //second command t
+//        remote.invoke()
+//        remote.invoke()
     }
 }

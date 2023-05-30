@@ -1,4 +1,4 @@
-package com.pattern.behavioral.observer
+package com.pattern.behavioral.observer.weather2
 
 import com.google.gson.annotations.SerializedName
 
