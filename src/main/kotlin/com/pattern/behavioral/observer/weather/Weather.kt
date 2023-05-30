@@ -23,12 +23,12 @@ class Weather(
         notifyObservers()
     }
 
+    override fun getObservers(): List<WeatherObserver> = this.observers
+
     private fun notifyObservers() {
         println("Notifying WeatherObservers")
         for (observer in observers) {
             observer.update(state)
         }
     }
-
-
 }
