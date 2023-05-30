@@ -1,10 +1,9 @@
-package com.pattern.behavioral.decorator
+package com.pattern.structural.decorator.beverage
+
+import com.pattern.structural.decorator.Decorated
+import com.pattern.structural.decorator.Decorator
 
 
-/**
- * Decorators have the same type as the objects they decorate. Decorators add their own behavior to the object
- * that it decorates. Decorators use inheritance for type-matching and composition to get behaviour.
- */
 fun main() {
     val beverage1: Beverage = Espresso
     println("Beverage 1: ${beverage1.getDescription()}\t\t\t\t\t\t\t\t: $${beverage1.cost()}")
@@ -16,25 +15,26 @@ fun main() {
     println("Beverage 2: ${beverage2.getDescription()}\t\t: $${beverage2.cost()}")
 }
 
-interface Beverage {
+
+interface Beverage : Decorated {
     fun getDescription(): String
     fun cost(): Double
 }
 
 object Espresso : Beverage {
     private const val description: String = "Espresso"
-    override fun getDescription(): String = this.description
+    override fun getDescription(): String = description
 
     override fun cost() = 1.99
 }
 
 object HouseBlend : Beverage {
     private const val description: String = "HouseBlend"
-    override fun getDescription(): String = this.description
+    override fun getDescription(): String = description
     override fun cost() = .89
 }
 
-sealed interface CondimentDecorator : Beverage
+sealed interface CondimentDecorator : Beverage, Decorator
 
 class Milk(private val beverage: Beverage) : CondimentDecorator {
     override fun getDescription() = beverage.getDescription() + ", Milk"

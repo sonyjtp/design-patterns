@@ -1,28 +1,20 @@
 package com
 
-import com.pattern.behavioral.decorator.*
 import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
 import com.pattern.behavioral.strategy.Singer
 import com.pattern.creational.factory.abstract.FurnitureFactory
-import com.pattern.creational.factory.simple.ChicagoPizzaStore
-import com.pattern.creational.factory.simple.NyPizzaStore
-import com.pattern.creational.factory.simple.PizzaStore
 import com.pattern.creational.singleton.Logger
 
-object Main {
+object PatternsMain {
 
     @JvmStatic
-    fun main(args: Array<String>) {
-        when (readlnOrNull()) {
-            "strategy" -> callStrategy()
-            "decorator" -> callDecorator()
-            "simplefactory" -> callSimpleFactory()
-            "abstractfactory" -> callAbstractFactory()
-            "singleton" -> callSingleton()
-            "command" -> callCommand()
-            else -> throw IllegalArgumentException("invalid!")
-        }
+    fun main(args: Array<String>) = when (readlnOrNull()) {
+        "strategy" -> callStrategy()
+        "abstractfactory" -> callAbstractFactory()
+        "singleton" -> callSingleton()
+        "command" -> callCommand()
+        else -> throw IllegalArgumentException("invalid!")
     }
 
     /**
@@ -46,35 +38,6 @@ object Main {
 
         artist1 = Dancer("Yesudas")
         artist1.perform()
-    }
-
-
-    /**
-     * Decorators have the same type as the objects they decorate. Decorators add their own behavior to the object
-     * that it decorates. Decorators use inheritance for type-matching and composition to get behaviour.
-     */
-    private fun callDecorator() {
-        val beverage1: Beverage = Espresso
-        println("Beverage 1: ${beverage1.getDescription()}\t\t\t\t\t\t\t\t: $${beverage1.cost()}")
-        var beverage2: Beverage = HouseBlend
-        beverage2 = Mocha(beverage2)
-        println("Beverage 2: ${beverage2.getDescription()}\t\t\t\t\t\t: $${beverage2.cost()}")
-        println("I need more decorations...")
-        beverage2 = Milk(Soy(Whip(beverage2)))
-        println("Beverage 2: ${beverage2.getDescription()}\t\t: $${beverage2.cost()}")
-    }
-
-    /**
-     * Simple Factory pattern has an abstract interface for creating one product - pizza in this case. Each subclass
-     * of the interface has its own factory and decides which concrete class (product) to instantiate.
-     */
-    private fun callSimpleFactory() {
-        var pizzaStore: PizzaStore = NyPizzaStore
-        pizzaStore.create("cheese").prepare()
-        pizzaStore.create("pepperoni").prepare()
-        pizzaStore = ChicagoPizzaStore
-        pizzaStore.create("cheese").prepare()
-        pizzaStore.create("pepperoni").prepare()
     }
 
     /**
