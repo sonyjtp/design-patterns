@@ -7,13 +7,9 @@ import io.kotest.matchers.types.shouldBeSameInstanceAs
 class FurnitureTest : FunSpec({
 
     test("abstract factory") {
-        var furniture: Furniture = FurnitureTypeFactory.getFurnitureType("chair").create("modern")
-        furniture shouldBeSameInstanceAs ModernChair
-        furniture = FurnitureTypeFactory.getFurnitureType("chair").create("victorian")
-        furniture shouldBeSameInstanceAs VictorianChair
-        furniture = FurnitureTypeFactory.getFurnitureType("sofa").create("venetian")
-        furniture shouldBeSameInstanceAs VenetianSofa
-        furniture = FurnitureTypeFactory.getFurnitureType("sofa").create("minimalist")
-        furniture shouldBeSameInstanceAs MinimalistSofa
+        FurnitureTypeFactory.getFurnitureType("chair").create("modern") shouldBeSameInstanceAs ModernChair
+        FurnitureTypeFactory.getFurnitureType("chair").create("victorian") shouldBeSameInstanceAs VictorianChair
+        FurnitureTypeFactory.getFurnitureType("sofa").create("venetian") shouldBeSameInstanceAs VenetianSofa
+        FurnitureTypeFactory.getFurnitureType("sofa").create("minimalist") shouldBeSameInstanceAs MinimalistSofa
     }
 })
