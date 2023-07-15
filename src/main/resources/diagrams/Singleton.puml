@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface Task
+class SingletonClass
+class ClassA
+class ClassB
+class ClassC
+
+
+Task <|-- SingletonClass
+SingletonClass <-- ClassA
+SingletonClass <-- ClassB
+SingletonClass <-- ClassC
+
+@enduml

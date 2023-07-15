@@ -3,7 +3,6 @@ package com
 import com.pattern.behavioral.strategy.Artist
 import com.pattern.behavioral.strategy.Dancer
 import com.pattern.behavioral.strategy.Singer
-import com.pattern.creational.factory.abstract.FurnitureFactory
 import com.pattern.creational.singleton.Logger
 
 object PatternsMain {
@@ -11,7 +10,6 @@ object PatternsMain {
     @JvmStatic
     fun main(args: Array<String>) = when (readlnOrNull()) {
         "strategy" -> callStrategy()
-        "abstractfactory" -> callAbstractFactory()
         "singleton" -> callSingleton()
         "command" -> callCommand()
         else -> throw IllegalArgumentException("invalid!")
@@ -40,24 +38,6 @@ object PatternsMain {
         artist1.perform()
     }
 
-    /**
-     * Abstract Factory pattern has an abstract interface for creating a family of products - chairs and sofas.
-     * It has a set of factory methods, one for each product.
-     */
-    private fun callAbstractFactory() {
-        var chair = FurnitureFactory.createChair("victorian")
-        chair.roll()
-        chair.pushback()
-        chair = FurnitureFactory.createChair("modern")
-        chair.roll()
-        chair.pushback()
-        var sofa = FurnitureFactory.createSofa("victorian")
-        sofa.roll()
-        sofa.pushback()
-        sofa = FurnitureFactory.createSofa("minimalist")
-        sofa.roll()
-        sofa.pushback()
-    }
 
     /**
      * Contrary to how we have it in Java, in Kotlin we do not need a private constructor and a static `getInstance()`

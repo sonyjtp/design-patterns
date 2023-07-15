@@ -1,0 +1,71 @@
+@startuml
+hide empty fields
+hide empty methods
+skinparam Nodesep 50
+skinparam Ranksep 40
+
+class Client
+
+interface Furniture
+interface FurnitureFactory
+class FurnitureTypeFactory
+
+class ChairFactory
+interface Chair
+class VictorianChair
+class ModernChair
+
+class SofaFactory
+interface Sofa
+class VenetianSofa
+class MinimalistSofa
+
+
+Client --> FurnitureTypeFactory
+Client --> Chair
+Client --> Sofa
+
+Furniture <|.. Chair
+Furniture <|.. Sofa
+
+FurnitureTypeFactory --> Furniture
+
+
+Chair <|.. VictorianChair
+Chair <|.. ModernChair
+Sofa <|.. VenetianSofa
+Sofa <|.. MinimalistSofa
+VictorianChair <-down- ChairFactory
+ModernChair <-down- ChairFactory
+VenetianSofa <–down- SofaFactory
+MinimalistSofa <–down- SofaFactory
+
+FurnitureFactory <|.. ChairFactory
+FurnitureFactory <|.. SofaFactory
+
+note left of Client
+The Client is written against the
+abstract factory (FurnitureFactory)
+and then composed at
+runtime with an actual factory (Chair/Sofa Factory).
+end note
+
+note bottom of FurnitureFactory
+The FurnitureFactory defines
+the interface that all Concrete
+factories must implement which
+consists of a set of methods
+for producing products.
+end note
+
+note "The concrete factories implement the\ndifferent product families. To create a\nproduct the client uses one of these factories,\nso it never has to instantiate a product object." as n1
+ChairFactory .. n1
+SofaFactory .. n1
+
+note right of Sofa
+This is the product
+family. Each concrete
+factory can produce an
+entire set of products.
+end note
+@enduml

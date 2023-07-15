@@ -3,7 +3,7 @@ package com.pattern.structural.decorator.beverage
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
-class BeverageKtTest : FunSpec({
+class BeverageTest : FunSpec({
 
     test("beverage decorator") {
         val houseBlend: Beverage = HouseBlend

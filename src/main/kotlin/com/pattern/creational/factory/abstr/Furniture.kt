@@ -1,34 +1,31 @@
-package com.pattern.creational.factory.abstract
+package com.pattern.creational.factory.abstr
 
 
 /**
  * Abstract Factory pattern has an abstract interface for creating a family of products - chairs and sofas.
  * It has a set of factory methods, one for each product.
  */
-fun main() {
-    var chair = FurnitureFactory.createChair("victorian")
-    chair.roll()
-    chair.pushback()
-    chair = FurnitureFactory.createChair("modern")
-    chair.roll()
-    chair.pushback()
-    var sofa = FurnitureFactory.createSofa("victorian")
-    sofa.roll()
-    sofa.pushback()
-    sofa = FurnitureFactory.createSofa("minimalist")
-    sofa.roll()
-    sofa.pushback()
-}
 
-object FurnitureFactory {
-    fun createChair(type: String) = ChairFactory.create(type)
-    fun createSofa(type: String) = SofaFactory.create(type)
-}
-
-sealed interface Chair {
+sealed interface Furniture {
     fun roll()
     fun pushback()
 }
+
+sealed interface FurnitureFactory {
+    fun create(type: String): Furniture
+}
+
+object FurnitureTypeFactory {
+
+    fun getFurnitureType(type: String) = when (type) {
+        "chair" -> ChairFactory
+        "sofa" -> SofaFactory
+        else -> throw IllegalArgumentException("Furniture Type not available!")
+    }
+}
+
+
+sealed interface Chair : Furniture
 
 object VictorianChair : Chair {
     override fun roll() = println("Rolling Victorian chair")
@@ -40,8 +37,8 @@ object ModernChair : Chair {
     override fun pushback() = println("Pushing back Modern chair")
 }
 
-object ChairFactory {
-    fun create(type: String): Chair {
+object ChairFactory : FurnitureFactory {
+    override fun create(type: String): Chair {
         return when (type) {
             "victorian" -> VictorianChair
             "modern" -> ModernChair
@@ -50,14 +47,12 @@ object ChairFactory {
     }
 }
 
-sealed interface Sofa {
-    fun roll()
-    fun pushback()
-}
+sealed interface Sofa : Furniture
 
-object VictorianSofa : Sofa {
-    override fun roll() = println("Rolling Victorian sofa")
-    override fun pushback() = println("Pushing back Victorian sofa")
+
+object VenetianSofa : Sofa {
+    override fun roll() = println("Rolling Venetian sofa")
+    override fun pushback() = println("Pushing back Venetian sofa")
 }
 
 object MinimalistSofa : Sofa {
@@ -65,16 +60,12 @@ object MinimalistSofa : Sofa {
     override fun pushback() = println("Pushing back Minimalist sofa")
 }
 
-object SofaFactory {
-    fun create(type: String): Sofa {
+object SofaFactory : FurnitureFactory {
+    override fun create(type: String): Sofa {
         return when (type) {
-            "victorian" -> VictorianSofa
+            "venetian" -> VenetianSofa
             "minimalist" -> MinimalistSofa
             else -> throw IllegalArgumentException("Sofa Type not available!")
         }
     }
 }
-
-
-
-
