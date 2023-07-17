@@ -5,3 +5,5 @@ decorates. Decorators use inheritance for type-matching and composition to get b
 
 The decorator pattern can be thought of as a wrapper or more formally a way to enhance or extend the behavior of an
 object dynamically. The pattern provides an alternative to subclassing when new functionality is desired.
+
+http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/sonyjtp/design-patterns/master/src/main/resources/diagrams/decorator.puml

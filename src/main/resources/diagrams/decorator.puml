@@ -1,0 +1,51 @@
+@startuml
+hide empty fields
+hide empty methods
+skinparam Nodesep 50
+skinparam Ranksep 40
+
+
+interface Decorated
+interface Decorator
+interface Beverage
+interface CondimentDecorator
+class Espresso
+class HouseBlend
+class Milk
+class Mocha
+class Whip
+class Soy
+
+Beverage : #cost()
+Beverage : #getDescription()
+
+Beverage <|- CondimentDecorator
+CondimentDecorator <|-down Milk
+CondimentDecorator <|-down Mocha
+CondimentDecorator <|-down Soy
+CondimentDecorator <|-down Whip
+Decorated <|.. Beverage
+Beverage <|- Espresso
+Beverage <|- HouseBlend
+Decorator <|.. CondimentDecorator
+
+
+
+
+
+
+
+
+'VictorianChair <-down- ChairFactory
+'
+note left of Beverage
+Beverage can exist on its own or be
+decorated by one of the decorators
+end note
+
+note right of Decorator
+Decorator implementations are the same as
+those of the component they decorate
+end note
+
+@enduml
