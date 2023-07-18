@@ -1,0 +1,23 @@
+@startuml
+hide empty fields
+hide empty methods
+
+interface Trooper
+interface Weapon
+interface Legs
+class StormTrooper
+class Rifle
+class FlameThrower
+class RegularLegs
+class AthleticLegs
+Trooper <|-- StormTrooper
+StormTrooper o-- Legs
+StormTrooper o-- Weapon
+Weapon <|-- Rifle
+Weapon <|-- FlameThrower
+Legs <|-- RegularLegs
+Legs <|-- AthleticLegs
+Legs : move()
+Weapon : attack()
+
+@enduml
