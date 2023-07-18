@@ -1,0 +1,47 @@
+@startuml
+hide empty fields
+hide empty methods
+
+class Client
+interface Vehicle
+interface VehicleAdapter
+class Bus
+class Boat
+class BusAdapter
+class BoatAdapter
+
+
+VehicleAdapter : travel()
+Bus : drive()
+Boat : sail()
+Vehicle <|..right Bus
+Vehicle <|.. Boat
+VehicleAdapter <|- BusAdapter
+BoatAdapter -|> VehicleAdapter
+Boat -up-o BoatAdapter
+BusAdapter o-- Bus
+Client -> VehicleAdapter
+
+
+'
+'
+'
+'
+'
+'
+'
+'
+'
+''VictorianChair <-down- ChairFactory
+''
+'note left of Beverage
+'Beverage can exist on its own or be
+'decorated by one of the decorators
+'end note
+'
+'note right of Decorator
+'Decorator implementations are the same as
+'those of the component they decorate
+'end note
+
+@enduml
